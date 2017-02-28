@@ -10,6 +10,33 @@ Library to handle `<template>` elements. Html templates is a method supported by
 * Light (3Kb uncomprised)
 * Compatible with CommonJS, AMD and global javascript
 
+## Install
+
+Download the package using npm (or yarn):
+
+```sh
+npm install domplates
+```
+
+Or bower:
+
+```sh
+bower install domplates
+```
+
+Insert the library in the html:
+
+```html
+<script type="text/javascript" src="domplate/src/index.js"></script>
+```
+
+Or import the module using AMD/CommonJS:
+
+```js
+var Domplates = require('domplates');
+var myTemplates = new Domplates();
+```
+
 ## How to use
 
 To render a template, you only need the id of the template and an object with the data to use. The keys in the object are css selectors and the value is the data used. For example:
