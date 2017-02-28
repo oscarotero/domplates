@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Domplate</title>
+
+    <style type="text/css">
+    	.red {
+    		color: red;
+    	}
+    </style>
+</head>
+<body>
+
+<template id="tmpl-welcome">
+    <ul>
+    	<li></li>
+    </ul>
+</template>
+
+<script type="text/javascript" src="src/domplates.js"></script>
+<script type="text/javascript">
+    const tmpl = new Domplates();
+
+    tmpl.render('tmpl-welcome', {
+    	ul: {
+    		class: function () {
+    			return 'users'
+    		}
+    	},
+    	li: function () {
+    		return [
+    			'Laura',
+    			'Miguel',
+    			'Guille',
+    		]
+    	}
+    }, true);
+</script>
+
+</body>
+</html>

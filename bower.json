@@ -1,0 +1,16 @@
+{
+  "name": "domplates",
+  "description": "HTML templates handled easily",
+  "main": "src/index.js",
+  "authors": [
+    "Oscar Otero <oom@oscarotero.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "template",
+    "dom",
+    "html",
+    "html5",
+    "render"
+  ]
+}
