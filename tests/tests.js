@@ -99,5 +99,5 @@ QUnit.test('subtemplate', function (assert) {
 	assert.strictEqual(el.querySelectorAll('a.red').length, 2, "Passed!");
 	assert.strictEqual(el.querySelector('a.red').innerHTML, 'Miguel', "Passed!");
 	assert.strictEqual(el.querySelectorAll('a').length, 3, "Passed!");
-	assert.strictEqual(el.querySelectorAll('a[hidden]').length, 1, "Passed!");
+	assert.strictEqual(el.querySelectorAll('a[hidden]').length, 3, "Passed!");
 });

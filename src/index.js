@@ -36,13 +36,11 @@ class Domplates {
         const clone = document.importNode(template.content, true);
 
         Object.keys(data || {}).forEach((selector) => {
-            let node = clone.querySelector(selector);
+            let nodes = clone.querySelectorAll(selector);
 
-            if (!node) {
-                throw new Error(`The selector "${selector}" returns no results`);
+            for (let i = nodes.length - 1; i >= 0; i--) {
+                this.fill(nodes[i], data[selector]);
             }
-
-            this.fill(node, data[selector]);
         });
 
         if (insert) {
