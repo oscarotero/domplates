@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Test</title>
+	<link rel="stylesheet" href="../node_modules/qunitjs/qunit/qunit.css">
+</head>
+
+<body>
+	<div id="qunit"></div>
+
+	<template id="tmpl-helloworld">
+		<p>Hello, <strong></strong>!</p>
+	</template>
+
+	<hr>
+
+	<template id="tmpl-users">
+		<ul>
+			<li></li>
+		</ul>
+	</template>
+
+	<hr>
+
+	<template id="tmpl-users2">
+		<h2></h2>
+		<ul>
+			<template>
+			<li>
+				<a></a>
+			</li>
+			</template>
+		</ul>
+	</template>
+
+	<script src="../node_modules/qunitjs/qunit/qunit.js"></script>
+	<script type="text/javascript" src="../src/index.js"></script>
+	<script type="text/javascript" src="tests.js"></script>
+</body>
+</html>
