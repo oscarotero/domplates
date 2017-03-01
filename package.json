@@ -17,6 +17,6 @@
     "qunitjs": "^2.1.1"
   },
   "scripts": {
-    "test": "http-server . -c-1 -s -o"
+    "test": "http-server . -c-1 -s -o '/tests'"
   }
 }

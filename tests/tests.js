@@ -44,6 +44,20 @@ QUnit.test('repeat', function (assert) {
 	assert.strictEqual(el.querySelector('li').innerHTML, 'Laura', "Passed!");
 });
 
+QUnit.test('container', function (assert) {
+	const div = document.createElement('div');
+	tmpl.render('tmpl-users', {
+		li: [
+			'Laura',
+			'Miguel',
+			'Guille',
+		]
+	}, div);
+
+	assert.strictEqual(div.querySelectorAll('li').length, 3, "Passed!");
+	assert.strictEqual(div.querySelector('li').innerHTML, 'Laura', "Passed!");
+});
+
 QUnit.test('repeat:index', function (assert) {
 	function key (el, index) {
 		return index;

@@ -63,6 +63,33 @@ document.body.appendChild(welcome);
 <p>Hello, <strong>World</strong>!</p>
 ```
 
+The third argument specify whether the result must be inserted in the dom or not. Set `true` to insert just before the `<template>` element:
+
+```js
+tmpl.render('tmpl-welcome', {
+    strong: 'World'
+}, true);
+```
+```html
+<p>Hello, <strong>World</strong>!</p>
+<template id="tmpl-welcome">
+    <p>Hello, <strong></strong>!</p>
+</template>
+```
+
+You can pass a `Node` instance that will work as the container:
+
+```js
+const container = document.getElementById('container');
+
+tmpl.render('tmpl-welcome', {
+    strong: 'World'
+}, container);
+```
+
+(*) The container will be emptied before insert the new content.
+
+
 ### Working with attributes
 
 You can use an object instead a string to edit not only the content of the node but also its attributes. Example:

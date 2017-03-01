@@ -1,12 +1,20 @@
 const tmpl = new Domplates();
 
 //Hello world
-tmpl.render('tmpl-helloworld', {
+let hw = tmpl.render('tmpl-helloworld', {
     strong: {
         html: 'World',
         class: 'red'
     }
 }, true);
+
+//Hello world
+tmpl.render('tmpl-helloworld', {
+    strong: {
+        html: 'World',
+        class: 'red'
+    }
+}, hw);
 
 //Repeat items
 tmpl.render('tmpl-users', {

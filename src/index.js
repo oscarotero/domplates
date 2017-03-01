@@ -43,8 +43,13 @@ class Domplates {
             }
         });
 
-        if (insert) {
-            template.parentNode.insertBefore(clone, template);
+        if (insert === true) {
+            return template.parentNode.insertBefore(clone, template);
+        }
+
+        if (insert instanceof Node) {
+            insert.innerHTML = '';
+            return insert.appendChild(clone);
         }
 
         return clone;
