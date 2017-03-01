@@ -1,7 +1,7 @@
-var tmpl = new Domplates();
+const tmpl = new Domplates();
 
 QUnit.test('simple', function (assert) {
-	var el = tmpl.render('tmpl-helloworld', {
+	const el = tmpl.render('tmpl-helloworld', {
 		strong: 'World'
 	});
 
@@ -10,7 +10,7 @@ QUnit.test('simple', function (assert) {
 });
 
 QUnit.test('simple:remove', function (assert) {
-	var el = tmpl.render('tmpl-helloworld', {
+	const el = tmpl.render('tmpl-helloworld', {
 		strong: null
 	});
 
@@ -18,7 +18,7 @@ QUnit.test('simple:remove', function (assert) {
 });
 
 QUnit.test('simple:attributes', function (assert) {
-	var el = tmpl.render('tmpl-helloworld', {
+	const el = tmpl.render('tmpl-helloworld', {
 		strong: {
 			class: 'red',
 			html: 'World'
@@ -32,7 +32,7 @@ QUnit.test('simple:attributes', function (assert) {
 });
 
 QUnit.test('repeat', function (assert) {
-	var el = tmpl.render('tmpl-users', {
+	const el = tmpl.render('tmpl-users', {
 		li: [
 			'Laura',
 			'Miguel',
@@ -49,7 +49,7 @@ QUnit.test('repeat:index', function (assert) {
 		return index;
 	}
 
-	var el = tmpl.render('tmpl-users', {
+	const el = tmpl.render('tmpl-users', {
 		li: [
 			key,
 			key,
@@ -64,7 +64,7 @@ QUnit.test('repeat:index', function (assert) {
 });
 
 QUnit.test('repeat:attributes', function (assert) {
-	var el = tmpl.render('tmpl-users', {
+	const el = tmpl.render('tmpl-users', {
 		li: [
 			{
 				html: 'Laura',
@@ -90,7 +90,7 @@ QUnit.test('repeat:attributes', function (assert) {
 });
 
 QUnit.test('subtemplate', function (assert) {
-	var el = tmpl.render('tmpl-users2', {
+	const el = tmpl.render('tmpl-users2', {
 		h2: 'Hello world',
 		template: [
 			{
@@ -123,4 +123,24 @@ QUnit.test('subtemplate', function (assert) {
 	assert.strictEqual(el.querySelector('a.red').innerHTML, 'Miguel', "Passed!");
 	assert.strictEqual(el.querySelectorAll('a').length, 3, "Passed!");
 	assert.strictEqual(el.querySelectorAll('a[hidden]').length, 3, "Passed!");
+});
+
+QUnit.test('events', function (assert) {
+	const el = tmpl.render('tmpl-helloworld', {
+		strong: {
+			html: 'world',
+			onclick: function (ev) {
+				this.innerHTML = 'clicked!';
+			}
+		}
+	});
+
+	const strong = el.querySelector('strong');
+    assert.strictEqual(strong.innerHTML, 'world', "Passed!");
+
+	const event = document.createEvent('HTMLEvents');
+    event.initEvent('click', true, false);
+    strong.dispatchEvent(event);
+
+    assert.strictEqual(strong.innerHTML, 'clicked!', "Passed!");
 });

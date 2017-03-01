@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * Added a second argument in the functions with the index of the element.
+* Added support to asign event handlers to the elements
 
 ## 0.1.0 - 2017-02-28
 

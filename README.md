@@ -258,3 +258,43 @@ tmpl.render('tmpl-welcome', {
 <p class="position-0">First paragraph</p>
 <p class="position-1">Second paragraph</p>
 ```
+
+### Events
+
+Any attribute starting with `on` will be considered an event:
+
+```html
+<template id="tmpl-actions">
+    <div class="buttons">
+        <button class="button"></button>
+    </div>
+</template>
+```
+
+```js
+tmpl.render('tmpl-actions', {
+    button: [
+        {
+            html: 'Click me!'
+            onclick: function (event) {
+                event.preventDefault();
+                alert('Button clicked!')
+            }
+        },
+        {
+            html: 'Other button!'
+            onclick: function (event) {
+                event.preventDefault();
+                alert('Other button clicked!')
+            }
+        }
+    ]
+}, true);
+```
+
+```html
+<div class="buttons">
+    <button class="button">Click me!</button>
+    <button class="button">Other button!</button>
+</div>
+```

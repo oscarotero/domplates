@@ -86,6 +86,10 @@ class Domplates {
                 let value = data[name];
 
                 if (typeof value === 'function') {
+                    if (name.indexOf('on') === 0) { //it's an event
+                        return element.addEventListener(name.substr(2), value);
+                    }
+
                     value = value(element, index);
                 }
 
