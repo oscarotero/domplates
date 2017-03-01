@@ -158,3 +158,19 @@ QUnit.test('events', function (assert) {
 
     assert.strictEqual(strong.innerHTML, 'clicked!', "Passed!");
 });
+
+QUnit.test('data', function (assert) {
+	const el = tmpl.render('tmpl-helloworld', {
+		strong: {
+			html: 'world',
+			data: {
+				type: 'bold',
+				number: 23
+			}
+		}
+	});
+
+	const strong = el.querySelector('strong');
+    assert.strictEqual('bold', strong.dataset.type, "Passed!");
+    assert.strictEqual('23', strong.dataset.number, "Passed!");
+});

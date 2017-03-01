@@ -53,4 +53,17 @@ tmpl.render('tmpl-links', {
             }
         }
     ]
-}, true)
+}, true);
+
+//Events + datalist
+tmpl.render('tmpl-button', {
+    button: {
+        html: 'Click me!',
+        onclick: function (event) {
+            alert('Hello ' + this.dataset.name);
+        },
+        data: {
+            name: 'Miguel'
+        }
+    }
+}, true);

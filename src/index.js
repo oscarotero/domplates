@@ -100,6 +100,8 @@ class Domplates {
 
                 if (name === 'html') {
                     element.innerHTML = value;
+                } else if (name === 'data' && typeof value === 'object') {
+                    Object.keys(value).forEach((key) => element.dataset[key] = value[key]);
                 } else {
                     element.setAttribute(name, value);
                 }

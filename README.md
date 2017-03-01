@@ -325,3 +325,34 @@ tmpl.render('tmpl-actions', {
     <button class="button">Other button!</button>
 </div>
 ```
+
+### Data
+
+The attribute `data` is used to save values in the `dataset` property:
+
+```html
+<template id="tmpl-actions">
+    <button class="button"></button>
+</template>
+```
+
+```js
+tmpl.render('tmpl-actions', {
+    button: {
+        html: 'Click me!',
+        onclick: function (event) {
+            alert('Hello ' + this.dataset.name);
+        },
+        data: {
+            name: 'Miguel'
+        }
+    }
+}, true);
+```
+
+```html
+<div class="buttons">
+    <button class="button">Click me!</button>
+    <button class="button">Other button!</button>
+</div>
+```
