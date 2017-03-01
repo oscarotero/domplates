@@ -220,21 +220,23 @@ tmpl.render('tmpl-users', {
 
 ### Functions
 
-When the value of a node or attribute is a function, it will be evaluated before:
+When the value of a node or attribute is a function, it will be evaluated. Note that the arguments passed to the function are the node element and the index.
 
 ```html
 <template id="tmpl-users">
     <ul>
         <li></li>
     </ul>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
 </template>
 ```
 
 ```js
 tmpl.render('tmpl-welcome', {
-    ul: {
-        class: function () {
-            return 'users'
+    p: {
+        class: function (el, index) {
+            return 'position-' + index;
         }
     },
     li: function () {
@@ -248,9 +250,11 @@ tmpl.render('tmpl-welcome', {
 ```
 
 ```html
-<ul class="users">
+<ul>
     <li>Laura</li>
     <li>Miguel</li>
     <li>Guille</li>
 </ul>
+<p class="position-0">First paragraph</p>
+<p class="position-1">Second paragraph</p>
 ```

@@ -44,6 +44,25 @@ QUnit.test('repeat', function (assert) {
 	assert.strictEqual(el.querySelector('li').innerHTML, 'Laura', "Passed!");
 });
 
+QUnit.test('repeat:index', function (assert) {
+	function key (el, index) {
+		return index;
+	}
+
+	var el = tmpl.render('tmpl-users', {
+		li: [
+			key,
+			key,
+			key,
+		]
+	});
+
+	assert.strictEqual(el.querySelectorAll('li').length, 3, "Passed!");
+	assert.strictEqual(el.querySelector('li').innerHTML, '0', "Passed!");
+	assert.strictEqual(el.querySelector('li:nth-child(2)').innerHTML, '1', "Passed!");
+	assert.strictEqual(el.querySelector('li:nth-child(3)').innerHTML, '2', "Passed!");
+});
+
 QUnit.test('repeat:attributes', function (assert) {
 	var el = tmpl.render('tmpl-users', {
 		li: [
@@ -52,7 +71,10 @@ QUnit.test('repeat:attributes', function (assert) {
 				class: 'red',
 			},
 			{
-				html: 'Miguel'
+				html: 'Miguel',
+				class: function (el, index) {
+					return 'pos-' + index;
+				}
 			},
 			{
 				html: 'Guille',
@@ -64,6 +86,7 @@ QUnit.test('repeat:attributes', function (assert) {
 	assert.strictEqual(el.querySelectorAll('li').length, 3, "Passed!");
 	assert.strictEqual(el.querySelector('li').innerHTML, 'Laura', "Passed!");
 	assert.strictEqual(el.querySelectorAll('li.red').length, 2, "Passed!");
+	assert.strictEqual(el.querySelectorAll('li.pos-1').length, 1, "Passed!");
 });
 
 QUnit.test('subtemplate', function (assert) {

@@ -38,8 +38,8 @@ class Domplates {
         Object.keys(data || {}).forEach((selector) => {
             let nodes = clone.querySelectorAll(selector);
 
-            for (let i = nodes.length - 1; i >= 0; i--) {
-                this.fill(nodes[i], data[selector]);
+            for (let i = 0; i < nodes.length; i++) {
+                this.fill(nodes[i], data[selector], i);
             }
         });
 
@@ -50,9 +50,9 @@ class Domplates {
         return clone;
     }
 
-    fill (element, data) {
+    fill (element, data, index) {
         if (typeof data === 'function') {
-            data = data(element);
+            data = data(element, index);
         }
 
         if (element instanceof HTMLTemplateElement) {
@@ -60,9 +60,9 @@ class Domplates {
         }
 
         if (Array.isArray(data)) {
-            data.forEach((data) => {
+            data.forEach((data, index) => {
                 const clone = element.cloneNode(true);
-                this.fill(clone, data);
+                this.fill(clone, data, index);
                 element.parentNode.insertBefore(clone, element);
             });
 
@@ -73,7 +73,7 @@ class Domplates {
             return element.parentNode.removeChild(element);
         }
 
-        if (typeof data === 'string') {
+        if (typeof data === 'string' || typeof data === 'number') {
             return element.innerHTML = data;
         }
 
@@ -86,7 +86,7 @@ class Domplates {
                 let value = data[name];
 
                 if (typeof value === 'function') {
-                    value = value(element);
+                    value = value(element, index);
                 }
 
                 if (name === 'html') {
@@ -97,12 +97,8 @@ class Domplates {
             });
         }
 
-        throw new Error('Invalid value')
+        throw new Error('Invalid value');
     }
-}
-
-function handleObject (element, data) {
-    
 }
 
 //Exports
