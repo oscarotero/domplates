@@ -1,10 +1,8 @@
 # DOMPLATES
 
-HTML templates handled easily.
-
 Library to handle `<template>` elements. Html templates is a method supported by all modern browsers that is faster than any other template system because it works with parsed html elements instead strings. [Here's more info](https://www.html5rocks.com/en/tutorials/webcomponents/template/)
 
-[Note: it's not supported by explorer](http://caniuse.com/#feat=template)
+Note: [It's not supported by explorer](http://caniuse.com/#feat=template)
 
 * Fast
 * Light (3Kb uncomprised)
@@ -12,19 +10,15 @@ Library to handle `<template>` elements. Html templates is a method supported by
 
 ## Install
 
-Download the package using npm (or yarn):
+Download the package using npm, yarn or bower:
 
 ```sh
 npm install domplates
-```
-
-Or bower:
-
-```sh
+yarn install domplates
 bower install domplates
 ```
 
-Insert the library in the html:
+Include the library in the html:
 
 ```html
 <script type="text/javascript" src="domplate/src/index.js"></script>
@@ -34,12 +28,12 @@ Or import the module using AMD/CommonJS:
 
 ```js
 var Domplates = require('domplates');
-var myTemplates = new Domplates();
+var tmpl = new Domplates();
 ```
 
 ## How to use
 
-To render a template, you only need the id of the template and an object with the data to use. The keys in the object are css selectors and the value is the data used. For example:
+To render a template, you only need the `id` of the template and an object with the data to use. The keys in the object are css selectors and the value is the data used. For example:
 
 ```html
 <template id="tmpl-welcome">
@@ -48,9 +42,6 @@ To render a template, you only need the id of the template and an object with th
 ```
 
 ```js
-const Domplates = require('domplates');
-const tmpl = new Domplates();
-
 const welcome = tmpl.render('tmpl-welcome', {
     strong: 'World'
 });
@@ -63,7 +54,7 @@ document.body.appendChild(welcome);
 <p>Hello, <strong>World</strong>!</p>
 ```
 
-The third argument specify whether the result must be inserted in the dom or not. Set `true` to insert just before the `<template>` element:
+The third argument specify whether the result must be inserted in the dom or not. Set `true` to insert the result just before the `<template>` element:
 
 ```js
 tmpl.render('tmpl-welcome', {
@@ -77,7 +68,7 @@ tmpl.render('tmpl-welcome', {
 </template>
 ```
 
-You can pass a `Node` instance that will work as the container:
+Or pass a `Node` instance that will work as the container:
 
 ```js
 const container = document.getElementById('container');
@@ -98,13 +89,13 @@ You can use an object instead a string to edit not only the content of the node 
 tmpl.render('tmpl-welcome', {
     strong: {
         html: 'World',
-        class: 'red'
+        title: 'The title of the element'
     }
-}, true); // `true` inserts the result in the dom
+}, true);
 ```
 
 ```html
-<p>Hello, <strong class="red">World</strong>!</p>
+<p>Hello, <strong title="The title of the element">World</strong>!</p>
 ```
 
 ### Repeat nodes
@@ -183,7 +174,7 @@ tmpl.render('tmpl-hello', {
 
 ### Subtemplates
 
-You can use also inner templates:
+You can use also templates within templates:
 
 
 ```html
@@ -288,7 +279,7 @@ tmpl.render('tmpl-welcome', {
 
 ### Events
 
-Any attribute starting with `on` will be considered an event:
+Any attribute starting with `on` and a function as value will be considered an event:
 
 ```html
 <template id="tmpl-actions">
